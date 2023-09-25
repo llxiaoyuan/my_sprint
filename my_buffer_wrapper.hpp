@@ -15,4 +15,11 @@ private:
 /*
 	printf("%s\n", my_buffer_wrapper(my_sprintf_alloc("hello %d", 1)).as_str());
 	printf("%S\n", my_buffer_wrapper(my_wsprintf_alloc(L"hello %d", 1)).as_wstr());
+
+	printf("%s\n", my_buffer_wrapper(my_sprintf_alloc("hello %08lf %08lf %08lf %f",
+		-111.234234234,
+		std::numeric_limits<double>::quiet_NaN(),
+		-INFINITY,
+		INFINITY)
+	).as_str());
 */
