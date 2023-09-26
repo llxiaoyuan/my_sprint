@@ -146,7 +146,15 @@ size_t my_sprint_f(char** out, float f, int precision)
 		long long decimal_part = get_decimal_part(binary + decimal_part_start, BINARY_SIZE - decimal_part_start, precision);
 		result += my_sprint_i(out, integer_part, 10, 0, 0, 0);
 		result += 1; my_sprint_c(out, '.');
-		result += my_sprint_i(out, decimal_part, 10, 0, 0, 0);
+		if (decimal_part == 0) {
+			result += precision;
+			for (int i = 0; i < precision; i++) {
+				my_sprint_c(out, '0');
+			}
+		}
+		else {
+			result += my_sprint_i(out, decimal_part, 10, 0, 0, 0);
+		}
 	}
 	else {
 		result += 1; my_sprint_c(out, 'e');
@@ -219,7 +227,15 @@ size_t my_sprint_lf(char** out, double lf, int precision)
 		long long decimal_part = get_decimal_part(binary + decimal_part_start, BINARY_SIZE - decimal_part_start, precision);
 		result += my_sprint_i(out, integer_part, 10, 0, 0, 0);
 		result += 1; my_sprint_c(out, '.');
-		result += my_sprint_i(out, decimal_part, 10, 0, 0, 0);
+		if (decimal_part == 0) {
+			result += precision;
+			for (int i = 0; i < precision; i++) {
+				my_sprint_c(out, '0');
+			}
+		}
+		else {
+			result += my_sprint_i(out, decimal_part, 10, 0, 0, 0);
+		}
 	}
 	else {
 		result += 1; my_sprint_c(out, 'e');
@@ -543,7 +559,15 @@ size_t my_wsprint_f(wchar_t** out, float f, int precision)
 
 		result += my_wsprint_i(out, integer_part, 10, 0, 0, 0);
 		result += 1; my_wsprint_c(out, '.');
-		result += my_wsprint_i(out, decimal_part, 10, 0, 0, 0);
+		if (decimal_part == 0) {
+			result += precision;
+			for (int i = 0; i < precision; i++) {
+				my_wsprint_c(out, '0');
+			}
+		}
+		else {
+			result += my_wsprint_i(out, decimal_part, 10, 0, 0, 0);
+		}
 	}
 	else {
 		result += 1; my_wsprint_c(out, 'e');
@@ -617,7 +641,16 @@ size_t my_wsprint_lf(wchar_t** out, double lf, int precision)
 
 		result += my_wsprint_i(out, integer_part, 10, 0, 0, 0);
 		result += 1; my_wsprint_c(out, '.');
-		result += my_wsprint_i(out, decimal_part, 10, 0, 0, 0);
+
+		if (decimal_part == 0) {
+			result += precision;
+			for (int i = 0; i < precision; i++) {
+				my_wsprint_c(out, '0');
+			}
+		}
+		else {
+			result += my_wsprint_i(out, decimal_part, 10, 0, 0, 0);
+		}
 	}
 	else {
 		result += 1; my_wsprint_c(out, 'e');
